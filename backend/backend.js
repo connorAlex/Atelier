@@ -1,23 +1,23 @@
-const adminEmail = "sabus3@uic.edu"
-const adminPassword = "Atelier2024!"
+const adminUserName = "Atelier"
+const adminPassword = "password1"
 
 class Account {
-    constructor(email, password) {
-        this.email = email;
+    constructor(userName, password) {
+        this.userName = userName;
         this.password = password;
     }
     
-    checkCredentials(inputEmail, inputPassword) {
-        return this.email === inputEmail && this.password === inputPassword;
+    checkCredentials(inputUserName, inputPassword) {
+        return this.userName === inputUserName && this.password === inputPassword;
     }
 }
 
-const adminUser = new Account(adminEmail, adminPassword);
+const adminUser = new Account(adminUserName, adminPassword);
 
-const inputEmail = "sabus3@uic.edu"
-const inputPassword = "atelier2024!"
+const inputUserName = "Atelier"
+const inputPassword = "password1"
 
-if(adminUser.checkCredentials(inputEmail, inputPassword)) {
+if(adminUser.checkCredentials(inputUserName, inputPassword)) {
     console.log("Credentials are correct!");
 } else {
     console.log("Invalid email or password. Try again!");
