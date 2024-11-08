@@ -14,9 +14,11 @@ import Stack from '@mui/material/Stack';
 import MuiCard from '@mui/material/Card';
 import { styled } from '@mui/material/styles';
 import ForgotPassword from './ForgotPassword';
-import { GoogleIcon, FacebookIcon, SitemarkIcon } from './CustomIcons';
-import AppTheme from '../shared-theme/AppTheme';
+import {FacebookIcon} from './CustomIcons';
+// import AppTheme from '../shared-theme/AppTheme';
 import ColorModeSelect from '../shared-theme/ColorModeSelect';
+import AccountClient from '../AccountClient'
+import Banner from '../shared-components/Banner'
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: 'flex',
@@ -61,8 +63,8 @@ const SignInContainer = styled(Stack)(({ theme }) => ({
 }));
 
 export default function SignIn(props) {
-  const [emailError, setEmailError] = React.useState(false);
-  const [emailErrorMessage, setEmailErrorMessage] = React.useState('');
+  const [userError, setUserError] = React.useState(false);
+  const [userErrorMessage, setUserErrorMessage] = React.useState('');
   const [passwordError, setPasswordError] = React.useState(false);
   const [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
   const [open, setOpen] = React.useState(false);
@@ -75,31 +77,28 @@ export default function SignIn(props) {
     setOpen(false);
   };
 
-  const handleSubmit = (event) => {
-    if (emailError || passwordError) {
-      event.preventDefault();
-      return;
-    }
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    await AccountClient.login(data.get('user'), data.get('password'));
+    return;
   };
 
   const validateInputs = () => {
-    const email = document.getElementById('email');
+    return true;
+
+    const user = document.getElementById('user');
     const password = document.getElementById('password');
 
     let isValid = true;
 
-    if (!email.value || !/\S+@\S+\.\S+/.test(email.value)) {
-      setEmailError(true);
-      setEmailErrorMessage('Please enter a valid email address.');
+    if (!user.value || !/\S+@\S+\.\S+/.test(user.value)) {
+      setUserError(true);
+      setUserErrorMessage('Please enter a valid username.');
       isValid = false;
     } else {
-      setEmailError(false);
-      setEmailErrorMessage('');
+      setUserError(false);
+      setUserErrorMessage('');
     }
 
     if (!password.value || password.value.length < 6) {
@@ -114,19 +113,21 @@ export default function SignIn(props) {
     return isValid;
   };
 
+  
+  
   return (
-    <AppTheme {...props}>
+    <>
+    <Banner />
       <CssBaseline enableColorScheme />
       <SignInContainer direction="column" justifyContent="space-between">
         <ColorModeSelect sx={{ position: 'fixed', top: '1rem', right: '1rem' }} />
         <Card variant="outlined">
-          <SitemarkIcon />  
           <Typography
             component="h1"
             variant="h4"
             sx={{ width: '100%', fontSize: 'clamp(2rem, 10vw, 2.15rem)' }}
           >
-            Sign in
+          Sign In
           </Typography>
           <Box
             component="form"
@@ -140,41 +141,36 @@ export default function SignIn(props) {
             }}
           >
             <FormControl>
-              <FormLabel htmlFor="email">Email</FormLabel>
+              <Box sx={{ display: 'flex', justifyContent: 'left' }}>
+                <FormLabel htmlFor="username">Username</FormLabel>
+              </Box>
               <TextField
-                error={emailError}
-                helperText={emailErrorMessage}
-                id="email"
-                type="email"
-                name="email"
-                placeholder="your@email.com"
-                autoComplete="email"
+                error={userError}
+                helperText={userErrorMessage}
+                id="user"
+                type="user"
+                name="user"
+                placeholder="Username"
+                autoComplete="user"
                 autoFocus
                 required
                 fullWidth
                 variant="outlined"
-                color={emailError ? 'error' : 'primary'}
-                sx={{ ariaLabel: 'email' }}
+                color={userError ? 'error' : 'primary'}
+                sx={{ ariaLabel: 'user' }}
               />
             </FormControl>
+
+            
             <FormControl>
               <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                 <FormLabel htmlFor="password">Password</FormLabel>
-                <Link
-                  component="button"
-                  type="button"
-                  onClick={handleClickOpen}
-                  variant="body2"
-                  sx={{ alignSelf: 'baseline' }}
-                >
-                  Forgot your password?
-                </Link>
               </Box>
               <TextField
                 error={passwordError}
                 helperText={passwordErrorMessage}
                 name="password"
-                placeholder="••••••"
+                placeholder="•••••••••"
                 type="password"
                 id="password"
                 autoComplete="current-password"
@@ -184,6 +180,17 @@ export default function SignIn(props) {
                 variant="outlined"
                 color={passwordError ? 'error' : 'primary'}
               />
+              <Box sx={{ display: 'flex', justifyContent: 'flex-end', paddingTop: '10px', }}>
+                <Link
+                component="button"
+                type="button"
+                onClick={handleClickOpen}
+                variant="body2"
+                sx={{ alignSelf: 'baseline' }}
+              >
+                Forgot your password?
+              </Link>
+              </Box>
             </FormControl>
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -216,22 +223,15 @@ export default function SignIn(props) {
             <Button
               fullWidth
               variant="outlined"
-              onClick={() => alert('Sign in with Google')}
-              startIcon={<GoogleIcon />}
-            >
-              Sign in with Google
-            </Button>
-            <Button
-              fullWidth
-              variant="outlined"
-              onClick={() => alert('Sign in with Facebook')}
+              onClick={() => alert('Sign in with Instagram')}
               startIcon={<FacebookIcon />}
             >
-              Sign in with Facebook
+              Sign in with Instagram
             </Button>
           </Box>
         </Card>
       </SignInContainer>
-    </AppTheme>
+      </>
   );
 }
+

@@ -1,7 +1,8 @@
-const adminUserName = "Atelier"
-const adminPassword = "password1"
 
-class Account {
+const adminUserName = "Atelier"
+const adminPassword = "Password!"
+
+class AccountClient {
     constructor(userName, password) {
         this.userName = userName;
         this.password = password;
@@ -12,13 +13,17 @@ class Account {
     }
 }
 
-const adminUser = new Account(adminUserName, adminPassword);
+const adminUser = new AccountClient(adminUserName, adminPassword);
 
 const inputUserName = "Atelier"
 const inputPassword = "password1"
 
-if(adminUser.checkCredentials(inputUserName, inputPassword)) {
-    console.log("Credentials are correct!");
-} else {
-    console.log("Invalid email or password. Try again!");
-}
+
+// Example of a function to log in a user
+const login = async (username, password) => {
+    console.log(username, password)
+  };
+  export default {
+    login,
+  };
+  

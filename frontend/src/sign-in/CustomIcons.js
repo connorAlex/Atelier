@@ -88,6 +88,12 @@ export function FacebookIcon() {
   );
 }
 
+export function InstagramIcon() {
+  return (
+    <>
+    </>
+  )
+}
 export function GoogleIcon() {
   return (
     <SvgIcon>
