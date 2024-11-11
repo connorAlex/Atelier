@@ -1,7 +1,9 @@
 import React, {useEffect, useRef } from 'react'
 import { APIProvider, Map, Marker} from '@vis.gl/react-google-maps'
 
-const GoogleMap = ({location}) => {
+
+
+const GoogleMap = ({location, userLocationCollection}) => {
   
   const handleMarkerClick = () => {
     alert("I've been clicked!")
@@ -23,7 +25,6 @@ const GoogleMap = ({location}) => {
     } else {
       navigator.geolocation.getCurrentPosition(success, error);
     }
-    console.log(location)
     return location
   }
 
@@ -39,6 +40,13 @@ const GoogleMap = ({location}) => {
           gestureHandling={'greedy'}
           disableDefaultUI={false}
         >
+          {userLocationCollection.map(user => (
+            <Marker
+              position={user.location}
+              title= {user.name}
+              onClick={handleMarkerClick}
+            />
+          ))}
           <Marker
                 position={location}
                 title="testmarker"
