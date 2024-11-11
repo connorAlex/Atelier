@@ -2,14 +2,16 @@
 import './App.css';
 import Signin from './sign-in/SignIn';
 import { GoogleMap } from './googlemaps/GoogleMap';
-const myArr = {lat:22.54992, lng:100}
+
 
 let dummyCollection = [
   {
+    id:1,
     name: "John Doe",
     location: {lat: 41.928, lng: -88.50}
   },
   {
+    id:2,
     name: "Jane Doe",
     location: {lat: 41.928, lng: -87.70}
   }
@@ -18,7 +20,7 @@ let dummyCollection = [
 function App() {
   return (
     <div className="App">
-      < GoogleMap location={myArr} userLocationCollection={dummyCollection}/>
+      <GoogleMap userLocationCollection={dummyCollection} radius={10}/>
       
     </div>
   );
