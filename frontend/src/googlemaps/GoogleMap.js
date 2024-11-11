@@ -4,7 +4,7 @@ import { filterLocationsWithinRadius } from '../locationCalc/filterLocations';
 
 
 const GoogleMap = ({userLocationCollection, radius}) => {
-  const [currentLocation, setCurrentLocation] = useState({lat:41.871889, lng:41.871889 -87.64925});
+  const [currentLocation, setCurrentLocation] = useState({lat:41.871889, lng:-87.64925});
   const [error, setError] = useState(null);
 
   useEffect(() => {
