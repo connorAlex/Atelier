@@ -1,7 +1,6 @@
 
 import './App.css';
 import Signin from './sign-in/SignIn';
-import ToolBar from './shared-components/Toolbar';
 
 
 let dummyCollection = [
@@ -20,7 +19,7 @@ let dummyCollection = [
 function App() {
   return (
     <div className="App">
-      <ToolBar />
+      <Signin />
       
     </div>
   );
