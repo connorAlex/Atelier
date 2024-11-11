@@ -1,7 +1,7 @@
 
 import './App.css';
 import Signin from './sign-in/SignIn';
-import { GoogleMap } from './googlemaps/GoogleMap';
+import ToolBar from './shared-components/Toolbar';
 
 
 let dummyCollection = [
@@ -20,7 +20,7 @@ let dummyCollection = [
 function App() {
   return (
     <div className="App">
-      <GoogleMap userLocationCollection={dummyCollection} radius={10}/>
+      <ToolBar />
       
     </div>
   );
