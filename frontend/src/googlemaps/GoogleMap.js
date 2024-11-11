@@ -3,7 +3,7 @@ import { APIProvider, Map, AdvancedMarker} from '@vis.gl/react-google-maps'
 import { filterLocationsWithinRadius } from '../locationCalc/filterLocations';
 
 
-const GoogleMap = ({userLocationCollection, radius}) => {
+const GoogleMap = ({userLocationCollection, radius, setUser}) => {
   const [currentLocation, setCurrentLocation] = useState({lat:41.871889, lng:-87.64925});
   const [error, setError] = useState(null);
 
@@ -43,8 +43,9 @@ const GoogleMap = ({userLocationCollection, radius}) => {
     console.log(currentLocation)
   }, [])
 
-  const handleMarkerClick = () => {
-    alert("I've been clicked!")
+  const handleMarkerClick = (userId) => {
+    setUser(userId)
+    //console.log(userId)
   }
 
   const getUserLocation = () => {
@@ -74,7 +75,7 @@ const GoogleMap = ({userLocationCollection, radius}) => {
       <APIProvider apiKey={"AIzaSyCekx4Yn46gYABje-g-qXxfCFmvCxNxRsM"}>
         
           <Map
-          style={{width: '100vw', height: '100vh'}}
+          style={{width: '100vw', height: '95vh'}}
           defaultCenter={currentLocation}
           defaultZoom={9}
           gestureHandling={'greedy'}
@@ -85,7 +86,7 @@ const GoogleMap = ({userLocationCollection, radius}) => {
             <AdvancedMarker
               position={user.location}
               title= {user.name}
-              onClick={handleMarkerClick}
+              onClick={() => setUser(user.id)}
               
             />
           ))}

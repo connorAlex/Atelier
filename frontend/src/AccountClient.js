@@ -1,6 +1,6 @@
 
-const adminUserName = "Atelier"
-const adminPassword = "Password!"
+const adminUserName = "user"
+const adminPassword = "123"
 
 class AccountClient {
     constructor(userName, password) {
