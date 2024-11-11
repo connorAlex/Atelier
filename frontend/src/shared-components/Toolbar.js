@@ -81,7 +81,7 @@ export default function ToolBar() {
   };
 
   const handleMobileMenuOpen = (event) => {
-    //setMobileMoreAnchorEl(event.currentTarget);
+    setMobileMoreAnchorEl(event.currentTarget);
   };
 
   const menuId = 'primary-search-account-menu';
@@ -124,8 +124,8 @@ export default function ToolBar() {
       onClose={handleMobileMenuClose}
     >
       <MenuItem onClick={handleCalendarClick}>
-        <IconButton  size="large" aria-label="show 4 new appointments" color="inherit">
-          <Badge badgeContent={4} color="error">
+        <IconButton  size="large" aria-label="show appointments" color="inherit">
+          <Badge color="error">
             <CalendarMonthIcon />
           </Badge>
         </IconButton>
@@ -175,7 +175,7 @@ export default function ToolBar() {
                 ria-label="show 4 new appointments" 
                 color="inherit" 
                 onClick={handleCalendarClick}>
-              <Badge badgeContent={4} color="error">
+              <Badge color="error">
                 <CalendarMonthIcon />
               </Badge>
             </IconButton>
