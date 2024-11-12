@@ -19,11 +19,11 @@ const ArtistList = ({ selectedUser, artists , setUser, handleArtistClick}) => {
    },[selectedUser])
 
   return (
-        <Paper  elevation={3} style={{zIndex:'2', marginTop: "5%", left: '0', position:'absolute', maxHeight: '760px',  marginLeft: "10px", borderRadius: '8px',padding: '16px', maxWidth: '350px', width: '100%', height: '100%'}}>
+        <Paper  elevation={3} style={{zIndex:'2', marginTop: "5%", left: '0', position:'absolute', maxHeight: '650px',  marginLeft: "10px", borderRadius: '8px',padding: '16px', maxWidth: '350px', width: '100%', height: '100%'}}>
         <Typography variant="h6" style={{ marginBottom: '8px' }}>
           Artists Near You
         </Typography>
-        <div className = "artist-list"style={{ overflowY: 'auto', flex: 1,overflow: 'auto', maxHeight: '720px'}}>
+        <div className = "artist-list"style={{ overflowY: 'auto', flex: 1,overflow: 'auto', maxHeight: '600px'}}>
         <List>
             {artists.map((artist, index) => (
             <ListItem
@@ -32,14 +32,14 @@ const ArtistList = ({ selectedUser, artists , setUser, handleArtistClick}) => {
                 onClick={() => setUser(artist)}
                 sx={{}}
                 style={{
-                  border: artist.id === selectedUser? '2px solid #ddd': '1px solid #ddd',
+                  border: artist.id === selectedUser.id? '2px solid #ddd': '1px solid #ddd',
                   
                   borderRadius: '8px', 
                   marginBottom: '12px',
                   padding: '16px', 
                   cursor: 'pointer',
-                  backgroundColor: "#f9f9f9", 
-                  boxShadow: artist.id === selectedUser? '0px 4px 10px rgba(0, 0, 0, 0.2)' :'0px 2px 5px rgba(0, 0, 0, 0.1)', 
+                  backgroundColor: artist.id === selectedUser.id? "#e3e3e3": "#f9f9f9", 
+                  boxShadow: artist.id === selectedUser.id? '0px 4px 10px rgba(0, 0, 0, 0.2)' :'0px 2px 5px rgba(0, 0, 0, 0.1)', 
                   transition: 'box-shadow 0.3s ease, transform 0.3s ease', 
                 }}
                 onMouseEnter={(e) => {

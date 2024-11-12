@@ -8,6 +8,7 @@ import MiniProfilePage from './components/MiniProfilePage';
 import { userCollection, loggedInUser } from './components/userData';
 import EditArtistPage from './components/EditArtistPage';
 import {BrowserRouter as Router, Route, Routes } from "react-router-dom"
+import AppointmentViewer from './components/AppointmentViewer';
 
 
 function App() {
@@ -16,7 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home userCollection={userCollection} />}/>
         <Route path="/profile" element = {<EditArtistPage myProfile={loggedInUser} />} />
-        
+        <Route path="/appointments" element={<AppointmentViewer/>}/>
       </Routes>
       
     </Router>

@@ -5,7 +5,7 @@ import EditArtist from './EditArtist'
 const EditArtistPage = ({ myProfile}) => {
     return (
         <div>
-            <ToolBar />
+            <ToolBar keepSearch={false}/>
             <EditArtist artist={myProfile}/>
         </div>
     );

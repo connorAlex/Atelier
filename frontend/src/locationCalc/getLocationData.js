@@ -15,7 +15,7 @@ const getLocationData = async (searchString) => {
             return { lat: parseFloat(lat), lng: parseFloat(lon) }
         } else {
             alert("Location not found")
-            
+            return {lat:41.871889, lng:-87.64925}
         }
     } catch (error) {
         console.error("Error fetching location data: ", error)

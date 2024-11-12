@@ -1,0 +1,82 @@
+.appointment-viewer {
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .appointment-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .appointment-item {
+    background-color: #ffffff;
+    margin-bottom: 10px;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .appointment-name {
+    font-weight: bold;
+    font-size: 18px;
+  }
+  
+  .appointment-details {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .appointment-time {
+    color: #777;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+  
+  .action-buttons {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .action-buttons button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 5px;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s;
+  }
+  
+  .tick-button {
+    color: #28a745; /* Green for tick */
+  }
+  
+  .cross-button {
+    color: #dc3545; /* Red for cross */
+  }
+  
+  .action-buttons button:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+  
+  .confirmed-label {
+    background-color: #28a745;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 15px;
+    font-weight: bold;
+    font-size: 14px;
+    pointer-events: none;
+  }
+  

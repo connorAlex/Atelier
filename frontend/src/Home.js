@@ -12,7 +12,7 @@ import MiniProfilePage from './components/MiniProfilePage';
 
 function Home({userCollection}) {
   const [filteredUsers, setfilteredLocation] = useState(userCollection)
-  const [selectedUser, setSelectedUser] = useState(null)
+  const [selectedUser, setSelectedUser] = useState(filteredUsers[0])
   const [currentLocation, setCurrentLocation] = useState({lat:41.871889, lng:-87.64925});
   const [isOverlayVisible, setOverlayVisible] = useState(false);
 
@@ -33,7 +33,7 @@ function Home({userCollection}) {
 
   const toggleOverlay = () => {
     setOverlayVisible(!isOverlayVisible);
-    console.log("fired")
+    console.log("toggleOverlay fired")
   };
 
   useEffect(() => { 

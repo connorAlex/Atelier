@@ -10,7 +10,9 @@ const MiniProfilePage = ({ artist, onClose }) => {
 
     if (!artist) return null;
 
-  
+    const toggleAppointments = () => {
+        setOpenScheduler(true)
+    }
    
 
     return (
@@ -18,15 +20,20 @@ const MiniProfilePage = ({ artist, onClose }) => {
             elevation={3}
             style={{
                 width: '100%',
-                maxWidth: '1000px',
+                maxWidth: '900px',
                 margin: 'auto',
+                height: "100%",
                 marginTop: '5%',
-                minHeight: '744px',
+                minHeight: '650px',
+                maxHeight: "650px",
                 borderRadius: '8px',
                 padding: '24px',
                 position: 'absolute',
                 marginLeft: '30%',
-                zIndex: 1
+                zIndex: 1,
+                
+                
+                
             }}
         >
             {/* Header with Avatar, Name, and Close Button */}
@@ -102,7 +109,7 @@ const MiniProfilePage = ({ artist, onClose }) => {
                 <Button
                     variant="contained"
                     color="success"
-                    onClick={onClose}
+                    onClick={toggleAppointments}
                     style={{
                         backgroundColor: '#4CAF50',
                         color: 'white',

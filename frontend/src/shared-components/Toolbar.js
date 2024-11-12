@@ -55,7 +55,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function ToolBar({handleSearch}) {
+export default function ToolBar({handleSearch, keepSearch=true}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const navigate = useNavigate()
@@ -64,14 +64,14 @@ export default function ToolBar({handleSearch}) {
 
   React.useEffect(() => {
     // Get the input element
-    const inputElement = document.querySelector('input[aria-label="search"]');
+    const inputElement = keepSearch? document.querySelector('input[aria-label="search"]'): null;
 
     // Add keydown event listener
-    inputElement.addEventListener('keydown', handleKeyPress);
+    inputElement?.addEventListener('keydown', handleKeyPress);
 
     // Cleanup the event listener on component unmount
     return () => {
-      inputElement.removeEventListener('keydown', handleKeyPress);
+      inputElement?.removeEventListener('keydown', handleKeyPress);
     };
   }, []);
 
@@ -83,7 +83,7 @@ export default function ToolBar({handleSearch}) {
 
   const handleCalendarClick = (event) => {
     //setAnchorEl(event.currentTarget);
-    alert("calendar")
+    navigate('/appointments')
   };
   const handleLogoClick = (event) => {
     //setAnchorEl(event.currentTarget);
@@ -187,7 +187,8 @@ export default function ToolBar({handleSearch}) {
           >
             Atelier
           </Typography>
-          <Search>
+          {keepSearch &&
+            <Search>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
@@ -196,6 +197,8 @@ export default function ToolBar({handleSearch}) {
               inputProps={{ 'aria-label': 'search' }}
             />
           </Search>
+          }
+          
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }} >
             <IconButton 
