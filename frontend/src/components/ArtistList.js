@@ -3,19 +3,23 @@ import { List, ListItem, ListItemIcon, ListItemText, Paper, Avatar, Typography }
 import './ArtistList.css'
 const ArtistList = ({ selectedUser, artists , setUser, handleArtistClick}) => {
    const itemRefs = useRef([])
+   const [artistsState, setArtistsState] = useState()
 
    const scrollToItem = (i) => {
     if (itemRefs.current[i]) {
       itemRefs.current[i].scrollIntoView({ behavior: 'smooth', block:'center'})
     }
    }
+   useEffect(()=> {
+    setArtistsState(artists)
+   },[])
    
    useEffect(() => {
     scrollToItem(selectedUser)
    },[selectedUser])
 
   return (
-        <Paper  elevation={3} style={{zIndex:'1', top: '15%', left: '0', position:'absolute', maxHeight: '760px',  marginLeft: "10px", borderRadius: '8px',padding: '16px', maxWidth: '350px', width: '100%', height: '100%' ,marginTop: '70px'}}>
+        <Paper  elevation={3} style={{zIndex:'2', marginTop: "5%", left: '0', position:'absolute', maxHeight: '760px',  marginLeft: "10px", borderRadius: '8px',padding: '16px', maxWidth: '350px', width: '100%', height: '100%'}}>
         <Typography variant="h6" style={{ marginBottom: '8px' }}>
           Artists Near You
         </Typography>
@@ -25,7 +29,7 @@ const ArtistList = ({ selectedUser, artists , setUser, handleArtistClick}) => {
             <ListItem
                 key={index}
                 ref = {(el) => (itemRefs.current[index] = el)}
-                onClick={() => setUser(artist.id)}
+                onClick={() => setUser(artist)}
                 sx={{}}
                 style={{
                   border: artist.id === selectedUser? '2px solid #ddd': '1px solid #ddd',

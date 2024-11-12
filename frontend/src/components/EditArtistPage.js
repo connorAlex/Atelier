@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-
+import ToolBar from '../shared-components/Toolbar';
 import EditArtist from './EditArtist'
 
 const EditArtistPage = ({ myProfile}) => {
     return (
         <div>
-            <EditArtist />
+            <ToolBar />
+            <EditArtist artist={myProfile}/>
         </div>
     );
 };

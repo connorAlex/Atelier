@@ -1,7 +1,5 @@
 import React, {useEffect, useState } from 'react'
 import { APIProvider, Map, AdvancedMarker} from '@vis.gl/react-google-maps'
-import { filterLocationsWithinRadius } from '../locationCalc/filterLocations';
-
 
 const GoogleMap = ({currentLocation, setCurrentLocation, userLocationCollection, radius, setUser}) => {
 
@@ -10,21 +8,19 @@ const GoogleMap = ({currentLocation, setCurrentLocation, userLocationCollection,
   }
   
   const shiftCoordinates = (location, offset = 0.001) => {
-    //console.log(location)
     return {
       lat: location.lat - offset * 15,
       lng: location.lng + offset
     };
   }
 
-    
     return(
       <APIProvider apiKey={"AIzaSyCekx4Yn46gYABje-g-qXxfCFmvCxNxRsM"}>
         
           <Map
           style={{width: '100vw', height: '95vh'}}
           center={shiftCoordinates(currentLocation)}
-          defaultZoom={15}
+          defaultZoom={12}
           gestureHandling={'greedy'}
           disableDefaultUI={true}
           mapId={'5b86a6c3c0c3128f'}
@@ -33,8 +29,7 @@ const GoogleMap = ({currentLocation, setCurrentLocation, userLocationCollection,
             <AdvancedMarker
               position={user.location}
               title= {user.name}
-              onClick={() => handleMarkerClick(user.id)}
-              
+              onClick={() => handleMarkerClick(user)}
             />
           ))}
         </Map>

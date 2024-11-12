@@ -1,22 +1,32 @@
-import React from 'react';
-import { Paper, Avatar, Typography, IconButton, Button, Divider } from '@mui/material';
+import React, { useState } from 'react';
+import { Paper, Avatar, Typography, IconButton, DialogActions, Button, Divider, Dialog, DialogContent, DialogTitle } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
+import igLogo from '../images/iglogo.png';
+import twitLogo from '../images/twitlogo.png';
+import AppointmentScheduler from './AppointmentScheduler'; // Import the scheduler component
 
 const MiniProfilePage = ({ artist, onClose }) => {
+    const [openScheduler, setOpenScheduler] = useState(false);
+
     if (!artist) return null;
+
+  
+   
 
     return (
         <Paper
             elevation={3}
             style={{
                 width: '100%',
-                maxWidth: '1400px',
+                maxWidth: '1000px',
                 margin: 'auto',
-                marginTop: '70px',
+                marginTop: '5%',
                 minHeight: '744px',
                 borderRadius: '8px',
                 padding: '24px',
-                position: 'relative',
+                position: 'absolute',
+                marginLeft: '30%',
+                zIndex: 1
             }}
         >
             {/* Header with Avatar, Name, and Close Button */}
@@ -40,7 +50,7 @@ const MiniProfilePage = ({ artist, onClose }) => {
                 <strong>Bio:</strong> {artist.bio || "A passionate digital illustrator exploring vibrant and dynamic art forms."}
             </Typography>
             <Typography variant="body2" color="textSecondary" style={{ marginBottom: '8px' }}>
-                <strong>Location:</strong> {artist.location || "San Francisco, CA"}
+                <strong>Location:</strong> {artist.city || "San Francisco, CA"}
             </Typography>
             <Typography variant="body2" color="textSecondary" style={{ marginBottom: '16px' }}>
                 <strong>Experience:</strong> {artist.experience || "5 years"}
@@ -53,10 +63,17 @@ const MiniProfilePage = ({ artist, onClose }) => {
 
             {/* Social Media Links */}
             <div style={{ display: 'flex', alignItems: 'center', marginBottom: '24px' }}>
-                <Typography variant="body1"><strong>Social Media:</strong></Typography>
-                <a href={artist.socialMedia.instagram} target="_blank" rel="noopener noreferrer" style={{ marginLeft: '8px', color: '#3f729b', textDecoration: 'none' }}>Instagram</a>
-                {artist.socialMedia.twitter && 
-                    <a href={artist.socialMedia.twitter} target="_blank" rel="noopener noreferrer" style={{ marginLeft: '8px', color: '#1da1f2', textDecoration: 'none' }}>Twitter</a>}
+                <Typography variant="body1" style={{ marginRight: '8px' }}><strong>Social Media:</strong></Typography>
+                {artist.socialMedia.instagram && (
+                    <a href={artist.socialMedia.instagram} target="_blank" rel="noopener noreferrer" style={{ color: '#3f729b', textDecoration: 'none', marginRight: '8px' }}>
+                        <img src={igLogo} alt="Instagram" style={{ width: '24px', height: '24px' }} />
+                    </a>
+                )}
+                {artist.socialMedia.twitter && (
+                    <a href={artist.socialMedia.twitter} target="_blank" rel="noopener noreferrer" style={{ color: '#000', textDecoration: 'none' }}>
+                        <img src={twitLogo} alt="Twitter" style={{ width: '30px', height: '24px' }} />
+                    </a>
+                )}
             </div>
 
             <Divider style={{ marginBottom: '24px' }} />
@@ -85,6 +102,7 @@ const MiniProfilePage = ({ artist, onClose }) => {
                 <Button
                     variant="contained"
                     color="success"
+                    onClick={onClose}
                     style={{
                         backgroundColor: '#4CAF50',
                         color: 'white',
@@ -95,6 +113,17 @@ const MiniProfilePage = ({ artist, onClose }) => {
                     Make Appointment
                 </Button>
             </div>
+
+            {/* Appointment Scheduler Dialog */}
+            <Dialog open={openScheduler} onClose={onClose} fullWidth maxWidth="sm">
+                <DialogTitle>Schedule an Appointment</DialogTitle>
+                <DialogContent>
+                    <AppointmentScheduler />
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={onClose} color="primary">Close</Button>
+                </DialogActions>
+            </Dialog>
         </Paper>
     );
 };

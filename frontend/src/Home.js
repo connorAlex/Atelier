@@ -7,16 +7,22 @@ import { GoogleMap } from './googlemaps/GoogleMap';
 import ToolBar from './shared-components/Toolbar';
 import getLocationData from './locationCalc/getLocationData';
 import { filterLocationsWithinRadius } from './locationCalc/filterLocations';
+import MiniProfilePage from './components/MiniProfilePage';
 
 
 function Home({userCollection}) {
-  const [selectedUser, setSelectedUser] = useState(1)
-  const [currentLocation, setCurrentLocation] = useState({lat:41.871889, lng:-87.64925});
   const [filteredUsers, setfilteredLocation] = useState(userCollection)
+  const [selectedUser, setSelectedUser] = useState(null)
+  const [currentLocation, setCurrentLocation] = useState({lat:41.871889, lng:-87.64925});
+  const [isOverlayVisible, setOverlayVisible] = useState(false);
 
-  const setUser = (userId) => {
-    if (userId !== selectedUser) {
-      setSelectedUser(userId);
+  
+  
+  let userInfo
+  const setUser = (user) => {
+    if (user !== selectedUser) {
+      setSelectedUser(user);
+      setOverlayVisible(true)
     }
   }
 
@@ -24,6 +30,11 @@ function Home({userCollection}) {
     let newLocation = await getLocationData(searchQuery)
     setCurrentLocation(newLocation)
   }
+
+  const toggleOverlay = () => {
+    setOverlayVisible(!isOverlayVisible);
+    console.log("fired")
+  };
 
   useEffect(() => { 
     fetchLocation();
@@ -34,6 +45,9 @@ function Home({userCollection}) {
     let filteredUsers = filterLocationsWithinRadius(currentLocation, userCollection, 10)
     setfilteredLocation(filteredUsers)
   }, [currentLocation])
+  useEffect(() => {
+    userInfo = filteredUsers[selectedUser]
+  }, [selectedUser, filteredUsers])
 
   const getUserLocation = () => {
     return new Promise((resolve, reject) => {
@@ -64,15 +78,19 @@ function Home({userCollection}) {
       console.error(err);
     }
   };
+  
   return (
     <div className="Home">
       <ToolBar handleSearch={handleSearch} />
       <ArtistList  selectedUser={selectedUser} setUser={setUser} artists={filteredUsers}/>
+      {isOverlayVisible && 
+      <MiniProfilePage artist={selectedUser} onClose={toggleOverlay}/>
+      }
       <GoogleMap 
         selectedUser={selectedUser} 
         setUser={setUser} 
         userLocationCollection={filteredUsers} 
-        radius={10}
+        radius={3}
         currentLocation={currentLocation}
         setCurrentLocation={setCurrentLocation}
         />

@@ -13,6 +13,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import MoreIcon from '@mui/icons-material/MoreVert';
+import {useNavigate} from "react-router-dom"
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -57,7 +58,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function ToolBar({handleSearch}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-
+  const navigate = useNavigate()
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -77,12 +78,16 @@ export default function ToolBar({handleSearch}) {
 
   const handleProfileClick = (event) => {
     //setAnchorEl(event.currentTarget);
-    alert("Profile selected")
+    navigate("/profile")
   };
 
   const handleCalendarClick = (event) => {
     //setAnchorEl(event.currentTarget);
     alert("calendar")
+  };
+  const handleLogoClick = (event) => {
+    //setAnchorEl(event.currentTarget);
+    navigate("/")
   };
 
   const handleMobileMenuClose = () => {
@@ -171,8 +176,10 @@ export default function ToolBar({handleSearch}) {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
-        <Toolbar>
+        <Toolbar style={{backgroundColor:"green"}}>
           <Typography
+            onClick={handleLogoClick}
+            cursor="pointer"
             variant="h6"
             noWrap
             component="div"
