@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './AppointmentViewer.css';
+import ToolBar from '../shared-components/Toolbar';
 
 const AppointmentViewer = () => {
   // Initial appointments list
@@ -21,6 +22,8 @@ const AppointmentViewer = () => {
   };
 
   return (
+    <div>
+    <ToolBar keepSearch={false}/>
     <div className="appointment-viewer">
       <h2>Scheduled Appointments</h2>
       <ul className="appointment-list">
@@ -43,6 +46,8 @@ const AppointmentViewer = () => {
         ))}
       </ul>
     </div>
+    </div>
+    
   );
 };
 

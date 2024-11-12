@@ -5,31 +5,49 @@ import em3 from '../images/em3.webp';
 import em4 from '../images/em4.webp';
 import pfp1 from '../images/pfp1.jpg';
 import pfp2 from '../images/pfp2.jpg'
+import pfp3 from "../images/pfp3.webp"
+import pfp4 from "../images/pfp4.jpeg"
+import pfp5 from "../images/pfp5.jpeg"
 import pic1 from '../images/pic1.webp';
 import pic2 from '../images/pic2.webp';
 import pic3 from '../images/pic3.webp';
 import pic4 from '../images/pic4.webp';
+import ccpfp from "../images/ccpfp.jpeg"
+import t1 from "../images/tatart1.png"
+import t2 from "../images/tatart2.png"
+import t3 from "../images/tatart3.png"
+import t4 from "../images/tatart4.png"
+import t5 from "../images/tatart5.png"
+import pho1 from "../images/photo1.png"
+import pho2 from "../images/photo2.png"
+import pho3 from "../images/photo3.png"
+import pho4 from "../images/photo4.png"
+import pho5 from "../images/photo5.png"
+import pho6 from "../images/photo6.png"
+import pho7 from "../images/photo7.png"
+import pho8 from "../images/photo8.png"
+
 
 const loggedInUser = {
     name: 'Connor Cochrane',
     profession: 'Musician',
     bio: "Chicago-based student. I enjoy playing classical guitar, shooting 35mm film, and logging movies in Letterboxd. Please let me play drums in your band",
-    profileImage: pfp1,
+    profileImage: ccpfp,
     location: 'Chicago, IL',
-    experience: '2 years',
+    experience: '2',
     skills: 'Design, Coding, Project Management',
     socialMedia: {
       instagram: 'https://instagram.com/connorcochrane',
       twitter: 'https://twitter.com/connorcochrane',
     },
     images: [
-      { url: em1, likes: 10100, comments: 200 },
-      { url: pic2, likes: 6800, comments: 140 },
-      { url: pic3, likes: 7500, comments: 170 },
-      { url: em2, likes: 9300, comments: 180 },
-      { url: em3, likes: 8100, comments: 150 },
-      { url: em4, likes: 6400, comments: 90 },
-      { url: pic1, likes: 7200, comments: 160 },
+      { url: pho4, likes: 10100, comments: 200 },
+      { url: pho2, likes: 6800, comments: 140 },
+      { url: pho3, likes: 7500, comments: 170 },
+      { url: pho5, likes: 9300, comments: 180 },
+      { url: pho6, likes: 8100, comments: 150 },
+      { url: pho7, likes: 6400, comments: 90 },
+      { url: pho8, likes: 7200, comments: 160 },
       { url: pic4, likes: 6900, comments: 130 },
     ],
     
@@ -40,8 +58,9 @@ const loggedInUser = {
       name: 'Darren Jones',
       profession: 'Digital Illustrator',
       bio: "Digital Illustrator with a love for vibrant colors and imaginative worlds. Specializing in digital painting, concept art, and illustration. Sharing my journey and creations one piece at a time. Always exploring new techniques and connecting with fellow artists. 🌎🎨",
-      profileImage: pfp1, 
-      location: 'San Francisco, CA',
+      profileImage: pfp2, 
+      city: 'San Francisco, CA',
+      location: {lat: 41.8819, lng: -87.6232},
       experience: '5 years',
       skills: 'Digital Painting, Illustration, Concept Art',
       socialMedia: {
@@ -85,7 +104,7 @@ const loggedInUser = {
       name: 'Michael Johnson',
       profession: 'Photographer',
       bio: 'Michael captures the essence of Chicago with his stunning urban photography.',
-      profileImage: pfp1,
+      profileImage: pfp2,
       city: 'Chicago, IL',
       location: { lat: 41.8916, lng: -87.6078 },
       experience: '7 years',
@@ -104,22 +123,22 @@ const loggedInUser = {
     {
       id: 4,
       name: 'Laura Chen',
-      profession: 'Graphic Designer',
-      bio: 'Laura blends creativity and marketing to create eye-catching designs.',
-      profileImage: pfp1,
-      city: 'Chicago, IL',
-      location: { lat: 41.8858, lng: -87.6207 },
-      experience: '6 years',
+      profession: 'Tattoo Artist',
+      bio: 'NYC-Based Tattoo Apprentice. Please Schedule for inquiries',
+      profileImage: pfp5,
+      city: 'New York, NY',
+      location: { lat: 40.7505, lng: -73.9934 },
+      experience: '6',
       skills: 'Branding, Typography, Visual Design',
       socialMedia: {
         instagram: 'https://instagram.com/laurachen',
         twitter: 'https://twitter.com/laurachen',
       },
       images: [
-        { url: em1, likes: 8900, comments: 240 },
-        { url: em2, likes: 7700, comments: 170 },
-        { url: em3, likes: 7400, comments: 130 },
-        { url: em4, likes: 6200, comments: 110 },
+        { url: t5, likes: 8900, comments: 240 },
+        { url: t2, likes: 7700, comments: 170 },
+        { url: t3, likes: 7400, comments: 130 },
+        { url: t4, likes: 6200, comments: 110 },
       ],
     },
     {
@@ -127,7 +146,7 @@ const loggedInUser = {
       name: 'Daniel Kim',
       profession: 'Animator',
       bio: 'Daniel is an expert in motion graphics and brings stories to life with animation.',
-      profileImage: pfp1,
+      profileImage: pfp4,
       city: 'Chicago, IL',
       location: { lat: 41.8785, lng: -87.6353 },
       experience: '4 years',
@@ -148,7 +167,7 @@ const loggedInUser = {
       name: 'Alice Johnson',
       profession: 'Fashion Designer',
       bio: 'Alice designs bold, modern clothing that redefines urban fashion.',
-      profileImage: pfp2,
+      profileImage: pfp3,
       city: 'Chicago, IL',
       location: { lat: 41.8666, lng: -87.6216 },
       experience: '8 years',
@@ -169,7 +188,7 @@ const loggedInUser = {
       name: 'Chris Evans',
       profession: 'Web Developer',
       bio: 'Chris specializes in building dynamic and responsive websites.',
-      profileImage: pfp1,
+      profileImage: pfp2,
       city: 'Chicago, IL',
       location: { lat: 41.8867, lng: -87.6342 },
       experience: '6 years',
@@ -211,7 +230,7 @@ const loggedInUser = {
       name: 'James Patel',
       profession: 'Marketing Specialist',
       bio: 'James uses data-driven strategies to drive impactful marketing campaigns.',
-      profileImage: pfp1,
+      profileImage: pfp2,
       city: 'Chicago, IL',
       location: { lat: 41.8500, lng: -87.6500 },
       experience: '7 years',
