@@ -54,12 +54,26 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function ToolBar() {
+export default function ToolBar({handleSearch}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
+  React.useEffect(() => {
+    // Get the input element
+    const inputElement = document.querySelector('input[aria-label="search"]');
+
+    // Add keydown event listener
+    inputElement.addEventListener('keydown', handleKeyPress);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      inputElement.removeEventListener('keydown', handleKeyPress);
+    };
+  }, []);
+
 
   const handleProfileClick = (event) => {
     //setAnchorEl(event.currentTarget);
@@ -82,6 +96,13 @@ export default function ToolBar() {
 
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      handleSearch(e.target.value)
+      e.target.value = ""
+    }
   };
 
   const menuId = 'primary-search-account-menu';

@@ -15,7 +15,7 @@ const ArtistList = ({ selectedUser, artists , setUser, handleArtistClick}) => {
    },[selectedUser])
 
   return (
-        <Paper  elevation={3} style={{zIndex:'1', top: '0', left: '0', position:'absolute', maxHeight: '760px',  marginLeft: "10px", borderRadius: '8px',padding: '16px', maxWidth: '350px', width: '100%', height: '100%' ,marginTop: '70px'}}>
+        <Paper  elevation={3} style={{zIndex:'1', top: '15%', left: '0', position:'absolute', maxHeight: '760px',  marginLeft: "10px", borderRadius: '8px',padding: '16px', maxWidth: '350px', width: '100%', height: '100%' ,marginTop: '70px'}}>
         <Typography variant="h6" style={{ marginBottom: '8px' }}>
           Artists Near You
         </Typography>
